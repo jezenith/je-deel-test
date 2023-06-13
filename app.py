@@ -9,7 +9,6 @@ class IP(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     reversed_ip = db.Column(db.String(15), nullable=False)
 
-
 @app.route('/')
 def display_ip():
     # Get client IP
@@ -31,15 +30,6 @@ def display_all():
     reversed_ips = [ip.reversed_ip for ip in ips]
     # Render a template with the list of reversed IPs
     return render_template('all.html', reversed_ips=reversed_ips)
-
-@app.route('/')
-def hello_world():
-    ip = request.remote_addr
-    reversed_ip = '.'.join(ip.split('.')[::-1])
-    new_ip = IP(reversed_ip=reversed_ip)
-    db.session.add(new_ip)
-    db.session.commit()
-    return 'Hello, your reversed IP is: %s\n' % reversed_ip
 
 def create_db():
     with app.app_context():

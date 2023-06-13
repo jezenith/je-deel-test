@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>All Reversed IPs</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <title>IP Reverser - All IPs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/Bubbles.js') }}"></script>
 </head>
 <body>
-    <div class="center">
+    <div class="container">
         <h1>All Reversed IPs</h1>
         <table>
-            {% for reversed_ip in reversed_ips %}
+            <thead>
                 <tr>
-                    <td>{{ reversed_ip }}</td>
+                    <th>Reversed IP</th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tbody>
+                {% for ip in reversed_ips %}
+                <tr>
+                    <td>{{ ip }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
-        <a href="/" class="button">Go Back</a>
     </div>
-    <canvas id="bubbles"></canvas>
-    <script src="/static/bubbles.js"></script>
 </body>
 </html>

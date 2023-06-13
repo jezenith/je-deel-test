@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('Deploy Image') {
+        stage('Deploy Docker Image') {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
@@ -67,7 +67,7 @@ pipeline {
             }
         }
 
-        stage('Kubernetes Deploy') {
+        stage('Deploy to Kubernetes') {
             agent { label 'KOPS' }
             steps {
                 sh "kubectl create namespace prod || true"

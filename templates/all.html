@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Reversed IPs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='background.css') }}">
+    <style>
+        body {
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            color: white;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Reversed IP</th>
+        </tr>
+        {% for ip in ips %}
+        <tr>
+            <td>{{ ip.id }}</td>
+            <td>{{ ip.reversed_ip }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script src="{{ url_for('static', filename='background.js') }}"></script>
+</body>
+</html>

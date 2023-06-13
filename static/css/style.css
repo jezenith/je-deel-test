@@ -46,8 +46,8 @@
 
 .center table td {
     padding: 10px;
-    border: 1px solid #fff;
-    color: #fff;
+    border: 1px solid #1f25c5;
+    color: #0d2cda;
 }
 
 .cube {
@@ -79,7 +79,7 @@
 }
 
 .cube:nth-child(4) {
-  animation-delay: 6s;
+  animation-delay: 2s;
   left: 90vw;
   top: 10vh;
 }
@@ -91,7 +91,7 @@
 }
 
 .cube:nth-child(6) {
-  animation-delay: 10s;
+  animation-delay: 1s;
   left: 50vw;
   top: 10vh;
 }

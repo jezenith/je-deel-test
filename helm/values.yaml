@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: jezenith/je-deel-test
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 5001
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
+config:
+  FLASK_ENV: production

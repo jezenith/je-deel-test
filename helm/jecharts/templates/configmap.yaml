@@ -1,7 +1,0 @@
-kind: ConfigMap
-metadata:
-  name: {{ include "je-deel-test.fullname" . }}-config
-  labels:
-    {{- include "je-deel-test.labels" . | nindent 4 }}
-data:
-  FLASK_ENV: "{{ .Values.config.FLASK_ENV }}"

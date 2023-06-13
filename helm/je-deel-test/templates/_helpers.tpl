@@ -1,4 +1,3 @@
-{{/* vim: set filetype=mustache: */}}
 {{/*
 Expand the name of the chart.
 */}}
@@ -9,6 +8,7 @@ Expand the name of the chart.
 {{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+If release name contains chart name it will be used as a full name.
 */}}
 {{- define "je-deel-test.fullname" -}}
 {{- if .Values.fullnameOverride }}
@@ -46,6 +46,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "je-deel-test.selectorLabels" -}}
-app.kubernetes.io/name:{{ include "je-deel-test.name" . }}
+app.kubernetes.io/name: {{ include "je-deel-test.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "je-deel-test.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "je-deel-test.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
 {{- end }}

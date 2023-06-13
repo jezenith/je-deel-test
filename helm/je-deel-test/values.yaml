@@ -81,3 +81,17 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: 5001
+  initialDelaySeconds: 120
+  periodSeconds: 40
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 5001
+  initialDelaySeconds: 15
+  periodSeconds: 30

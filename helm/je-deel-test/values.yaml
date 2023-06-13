@@ -37,11 +37,21 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 5001
   targetPort: 5001
 
 ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: je-deel-test.jedevopstest.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+ingressDisabledExample:
   enabled: false
   className: ""
   annotations: {}

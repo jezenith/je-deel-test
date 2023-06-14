@@ -8,7 +8,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 logging.basicConfig(filename='app.log', level=logging.ERROR)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.getenv('RDS_USERNAME')}:{os.getenv('RDS_PASSWORD')}@je-deel.cpl9h4c99kwt.us-east-2.rds.amazonaws.com:5432/je-deel"
+db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'instance', 'test.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path  # SQLite database file
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  
 app.wsgi_app = ProxyFix(app.wsgi_app)  # To get the correct IP behind a proxy (like Nginx)
 
@@ -61,5 +62,7 @@ def create_db():
         db.create_all()
 
 if __name__ == '__main__':
+    if not os.path.exists('instance'):
+        os.makedirs('instance')
     create_db()
     app.run(host='0.0.0.0', port=5001)

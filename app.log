@@ -24,3 +24,70 @@ INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:59] "[33mGET /static/bubbles.js 
 INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:55:00] "GET / HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:55:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.14:5001
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 13:52:32] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 13:52:32] "GET /static/css/style.css HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 13:52:34] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 13:52:35] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 13:52:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 13:52:35] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.14:5001
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:40] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:42] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:42] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:43] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:45] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:45] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:47] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:48] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:48] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:50] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:51] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:51] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:51] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:06:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.14:5001
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:32] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:33] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:33] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:34] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:35] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:35] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:36] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:43] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:45] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:45] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:47] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:48] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:48] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:50] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.0.14 - - [14/Jun/2023 14:11:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -

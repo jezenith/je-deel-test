@@ -1,67 +1,112 @@
-
 # Reverse IP Web Application
 
+This is a simple Flask application that captures and stores reversed IP addresses. The application has two main routes: the root (`/`) that displays the client's IP address and the reversed IP, and `/all` that shows all reversed IPs stored so far.
 
-## Je-Deel-Test: Flask Application & Helm Chart
+## Getting Started
 
-This repository contains a Flask application that captures and stores reversed IP addresses and a Helm chart to deploy it on a Kubernetes cluster. The application has two main routes: the root (`/`) that displays the client's IP address and the reversed IP, and `/all` that shows all reversed IPs stored so far.
-
-The CI/CD pipeline ensures that any changes pushed to the main branch of the repository are tested, built into a Docker image, and deployed to the Kubernetes cluster.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-1. Docker
-2. Kubernetes cluster
-3. Helm v3 or newer
-4. kubectl command-line tool
-5. Jenkins CI/CD tool
-### Usage
+- Python 3.8+
+- Docker
+- Kubernetes cluster
+- Helm v3 or newer
+- kubectl command-line tool
+- Jenkins CI/CD tool
 
-Clone the repository:
+![Alt text](./images/k8s-flow.svg)
 
-```bash
-git clone hhttps://github.com/jezenith/je-deel-test.git
-cd je-deel-test
-```
+### Running Locally
 
-The Jenkins CI/CD pipeline will handle the rest: it will build the Docker image, push it to Docker registry, and deploy the application to the Kubernetes cluster using helm.
+1. Clone the repository:
 
-### CI/CD Pipeline
+    ```bash
+    git clone https://github.com/jezenith/je-deel-test.git
+    cd je-deel-test
+    ```
 
-Our CI/CD pipeline is configured using Jenkins. The pipeline runs on every push to the `main` branch. Here's what happens in each job:
+2. Install the required Python packages:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Run the application:
+
+    ```bash
+    python app.py
+    ```
+
+The application will be available at `http://localhost:5001`.
+
+### Running with Docker
+
+1. Build the Docker image:
+
+    ```bash
+    docker build -t je-deel-test .
+    ```
+
+2. Run the Docker container:
+
+    ```bash
+    docker run -p 5001:5001 je-deel-test
+    ```
+
+The application will be available at `http://localhost:5001`.
+
+### Deploying with Kubernetes
+
+Navigate to the Kubernetes folder:
+
+1. Apply the Kubernetes manifest:
+
+    ```bash
+    kubectl apply -f k8s-manifest.yaml
+    ```
+
+2. The application will be deployed on a network load balancer:
+
+    ```bash
+    kubectl get svc je-deel-test-service
+    ```
+
+The application will be available at the external IP or load balancer endpoint of the service.
+
+### Deploying with Jenkins using Helm
+
+1. Prepare your Jenkins server and add the SCM to poll from Jenkinsfile in the master branch:
+
+    ```bash
+    Click 'Build Now' or do a merge to the master branch. The pipeline will trigger and build, deploy the web app automatically.
+    ```
+
+2. Get the external IP of the service:
+
+    ```bash
+    kubectl get svc je-deel-test-service
+    ```
+
+The application will be available at the external IP of the service.
+
+## CI/CD Pipeline
+
+The CI/CD pipeline is configured using Jenkins. The pipeline runs on every push to the `main` branch. Here's what happens in each job:
 
 1. **Install Dependencies**: Installs the required Python packages and Pylint for code quality checking.
-
 2. **Unit Test**: Runs the unit tests using Python's unittest module.
-
 3. **Pylint**: Performs static code analysis using Pylint.
-
 4. **Build Image**: Builds the Docker image.
-
 5. **Deploy Docker Image**: Pushes the Docker image to the Docker registry.
-
 6. **Remove Unused Docker Image**: Removes the unused Docker image from the Jenkins agent.
-
 7. **Deploy to Kubernetes**: Deploys the application to the Kubernetes cluster using the Helm chart.
 
 All these steps are defined in the `Jenkinsfile` in the root directory of this repository.
 
-### URL of Deployed Application
-
-The application is deployed and accessible at the Elb link from kubectl get svc -namespace prod  
-
-http://a097c34b874164f4cbccd229c609a36d-71451285.us-east-2.elb.amazonaws.com/
-
-### Troubleshooting
+## Troubleshooting
 
 If you encounter any issues, please check the logs of the pods. You can do this by running:
 
 ```bash
-kubectl logs <pod-name> -n prod
-```
-
-Replace `<pod-name>` with the name of the pod you're interested in.
-
-### Contribute
-
----
+kubectl logs <pod-name>

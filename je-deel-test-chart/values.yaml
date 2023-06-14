@@ -1,10 +1,10 @@
-replicaCount: 4
+replicaCount: 6
 image:
   repository: jezenith/je-deel-test
   tag: latest
 service:
   type: LoadBalancer
-  port: 80
+  port: 5001
   targetPort: 5001
 resources:
   requests:

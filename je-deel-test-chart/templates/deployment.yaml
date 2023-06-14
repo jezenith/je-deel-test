@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "chart.fullname" . }}
+  name: {{ include "je-deel-test-chart.fullname" . }}
   labels:
-    app: {{ include "chart.name" . }}
+    app: {{ include "je-deel-test-chart.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
@@ -13,20 +13,21 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: {{ include "chart.name" . }}
+      app: {{ include "je-deel-test-chart.fullname" . }}
   template:
     metadata:
       labels:
-        app: {{ include "chart.name" . }}
+        app: {{ include "je-deel-test-chart.fullname" . }}
     spec:
       containers:
-      - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      - name: {{ .Values.container.name }}
+        image: "{{ .Values.container.image.repository }}:{{ .Values.container.image.tag }}"
         ports:
         - containerPort: 5001
         resources:
           requests:
-            cpu: {{ .Values.resources.requests.cpu }}
-            memory: {{ .Values.resources.requests.memory }}
+            cpu: "100m"
+            memory: "100Mi"
           limits:
-            cpu: {{ .Values.resources.limits.cpu }}
+            cpu: "500m"
+            memory: "500Mi"

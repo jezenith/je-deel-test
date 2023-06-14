@@ -13,9 +13,3 @@ resources:
   limits:
     cpu: "500m"
     memory: "500Mi"
-livenessProbe:
-  initialDelaySeconds: 15
-  periodSeconds: 15
-readinessProbe:
-  initialDelaySeconds: 5
-  periodSeconds: 5

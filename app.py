@@ -14,7 +14,8 @@ class IP(db.Model):
 def display_ip():
     try:
         # Get client IP
-        ip = request.remote_addr
+        # If X-Forwarded-For header is present, use it and get the first IP if multiple IPs are present
+        ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(",")[0]
         # Reverse the IP
         reversed_ip = '.'.join(ip.split('.')[::-1])
         # Store the reversed IP in the database
@@ -25,6 +26,7 @@ def display_ip():
         return render_template('index.html', ip=ip, reversed_ip=reversed_ip)
     except Exception as e:
         app.logger.error(f"Error occurred: {e}")
+        # Render error page if exception occurs
         return render_template('error.html'), 500
 
 @app.route('/all')
@@ -38,6 +40,7 @@ def display_all():
         return render_template('all.html', reversed_ips=reversed_ips)
     except Exception as e:
         app.logger.error(f"Error occurred: {e}")
+        # Render error page if exception occurs
         return render_template('error.html'), 500
 
 def create_db():
@@ -47,5 +50,6 @@ def create_db():
 if __name__ == '__main__':
     if os.getenv('WERKZEUG_RUN_MAIN') != 'true':
         create_db()
+    # Run the application without reloader
     from werkzeug.serving import run_simple
     run_simple('localhost', 5001, app, use_reloader=False)

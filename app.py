@@ -43,15 +43,7 @@ def display_all():
         app.logger.error(f"Error occurred: {e}")
         return render_template('error.html'), 500
 
-def create_db():
-    with app.app_context():
-        db.create_all()
-
-if __name__ == '__main__':
-    create_db()
-    app.run(host='0.0.0.0', port=5001)
-
-    @app.route('/health')
+@app.route('/health')
 def health_check():
     try:
         # Run a simple SELECT query
@@ -64,3 +56,10 @@ def health_check():
         app.logger.error(f"Database connection failed: {e}")
         return 'Database connection failed', 500
 
+def create_db():
+    with app.app_context():
+        db.create_all()
+
+if __name__ == '__main__':
+    create_db()
+    app.run(host='0.0.0.0', port=5001)

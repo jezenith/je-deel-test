@@ -1,15 +1,4 @@
 apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: sqlite-db
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
-apiVersion: v1
 kind: Service
 metadata:
   name: je-deel-test-service
@@ -31,7 +20,7 @@ metadata:
   labels:
     app: je-deel-test
 spec:
-  replicas: 5
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -47,7 +36,7 @@ spec:
     spec:
       containers:
       - name: je-deel-test
-        image: jezenith/je-deel-test:latest
+        image: jezenith/je-deel-test:23
         ports:
         - containerPort: 5001
         resources:
@@ -57,10 +46,3 @@ spec:
           limits:
             cpu: "500m"
             memory: "500Mi"
-        volumeMounts:
-        - name: sqlite-db
-          mountPath: /app/instance
-      volumes:
-      - name: sqlite-db
-        persistentVolumeClaim:
-          claimName: sqlite-db

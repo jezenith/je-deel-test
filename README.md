@@ -15,7 +15,7 @@ These instructions will get you a copy of the project up and running on your loc
 - kubectl command-line tool
 - Jenkins CI/CD tool
 
-![Alt text](./images/k8s-je.svg)
+![Alt text](./images/k8s-je.svg)<img src="./images/k8s-je.svg" width="50%" height="50%">
 
 ### Running Locally
 

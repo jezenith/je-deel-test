@@ -13,3 +13,8 @@ resources:
   limits:
     cpu: "500m"
     memory: "500Mi"
+persistence:
+  enabled: true
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 1Gi

@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "je-deel-test.fullname" . }}
+  name: {{ include "je-deel-test-chart.fullname" . }}
   labels:
-    app: {{ include "je-deel-test.fullname" . }}
+    app: {{ include "je-deel-test-chart.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
@@ -13,21 +13,31 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: {{ include "je-deel-test.fullname" . }}
+      app: {{ include "je-deel-test-chart.fullname" . }}
   template:
     metadata:
       labels:
-        app: {{ include "je-deel-test.fullname" . }}
+        app: {{ include "je-deel-test-chart.fullname" . }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          ports:
-            - containerPort: {{ .Values.service.targetPort }}
-          resources:
-            requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
-            limits:
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
+      - name: je-deel-test
+        image: "{{ .Values.image.repository**deployment.yaml** (cont'd)
+```yaml
+        }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.targetPort }}
+        volumeMounts:
+        - mountPath: "/data"
+          name: data
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ include "je-deel-test-chart.fullname" . }}-claim

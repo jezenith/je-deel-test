@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "je-deel-test.fullname" . }}
+  name: {{ include "chart.fullname" . }}
   labels:
-    app: {{ include "je-deel-test.fullname" . }}
+    app: {{ include "chart.name" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
@@ -13,28 +13,20 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: {{ include "je-deel-test.fullname" . }}
+      app: {{ include "chart.name" . }}
   template:
     metadata:
       labels:
-        app: {{ include "je-deel-test.fullname" . }}
+        app: {{ include "chart.name" . }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          ports:
-            - containerPort: {{ .Values.service.targetPort }}
-          resources:
-            requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
-            limits:
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
-          volumeMounts:
-            - name: sqlite-db
-              mountPath: /app/instance
-      volumes:
-        - name: sqlite-db
-          persistentVolumeClaim:
-            claimName: {{ include "je-deel-test.fullname" . }}-pvc
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 5001
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}

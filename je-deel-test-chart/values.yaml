@@ -1,20 +1,13 @@
-replicaCount: 10
+replicaCount: 5
+
 image:
   repository: jezenith/je-deel-test
-  tag: latest
-service:
-  type: LoadBalancer
-  port: 80
-  targetPort: 5001
+  tag: 23
+
 resources:
   requests:
-    cpu: "100m"
-    memory: "100Mi"
+    cpu: 100m
+    memory: 100Mi
   limits:
-    cpu: "500m"
-    memory: "500Mi"
-persistence:
-  enabled: true
-  storageClass: ""
-  accessMode: ReadWriteOnce
-  size: 1Gi
+    cpu: 500m
+    memory: 500Mi

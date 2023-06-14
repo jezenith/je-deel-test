@@ -1,7 +1,7 @@
-replicaCount: 6
+replicaCount: 4
 image:
   repository: jezenith/je-deel-test
-  tag: latest  # Consider parameterizing this
+  tag: latest
 service:
   type: LoadBalancer
   port: 80
@@ -13,15 +13,3 @@ resources:
   limits:
     cpu: "500m"
     memory: "500Mi"
-livenessProbe:
-  httpGet:
-    path: /health
-    port: 5001
-  initialDelaySeconds: 15
-  periodSeconds: 15
-readinessProbe:
-  httpGet:
-    path: /health
-    port: 5001
-  initialDelaySeconds: 5
-  periodSeconds: 5

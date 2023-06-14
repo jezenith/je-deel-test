@@ -1,8 +1,8 @@
 # Reverse IP Web Application
 
-This is a simple Flask application that captures and stores reversed IP addresses. The application has two main routes: the root (`/`) that displays the client's IP address and the reversed IP, and `/all` that shows all reversed IPs stored so far.
+This is a simple Flask application that captures and stores reversed IP addresses. The application has two main routes: the root (`/`) that displays the visitors IP address and the reversed IP, and `/all` that shows all reversed IPs stored so far.
 
-currently live on: http://ac38de43890fe4864b6c0affade96595-5c685da0e71fc0f4.elb.us-east-2.amazonaws.com/
+currently live on: http://a4ad3bf68b8fd4e5592201ee190a240c-76aca2ca093d6c7b.elb.us-east-2.amazonaws.com/
 
 ## Getting Started
 
@@ -118,6 +118,8 @@ templates/deployment.yaml: This file defines the Kubernetes Deployment for the a
 templates/service.yaml: This file defines the Kubernetes Service for the application. It uses the values from values.yaml to set the service type, port, and target port.
 
 templates/hpa.yaml: This file defines the Horizontal Pod Autoscaler (HPA) for your application. It uses the values from values.yaml to set the minimum and maximum number of replicas and the CPU utilization threshold for scaling.
+
+templates/pvc.yaml This a persistent volume with AWS's Elastic Block Store (EBS) for the application. This will ensure that the data remains intact even if the pods go down or are rescheduled. It also uses the values from values.yaml
 
 The Helm chart allows to package the web application and deploy it on a Kubernetes cluster with a single command, helm install. The values in values.yaml can be overridden at install time, allowing for flexibility and customization.
 

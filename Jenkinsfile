@@ -1,10 +1,11 @@
 pipeline {
-
     agent any
 
     environment {
         registry = "jezenith/je-deel-test"
         registryCredential = 'dockerhub'
+        scannerHome = tool 'mysonarscanner4'
+        PATH = "${env.PATH}:/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/mysonarscanner4/bin"
     }
 
     stages {
@@ -54,9 +55,6 @@ pipeline {
         }
 
         stage('CODE ANALYSIS with SONARQUBE') {
-            environment {
-                scannerHome = tool 'mysonarscanner4'
-            }
             steps {
                 withSonarQubeEnv('sonar-pro') {
                     sh 'sonar-scanner'

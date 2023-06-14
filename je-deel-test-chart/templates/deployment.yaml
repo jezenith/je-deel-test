@@ -10,7 +10,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
-      maxSurge: 1
+      maxSurge: 4
   selector:
     matchLabels:
       app: {{ include "je-deel-test-chart.fullname" . }}
@@ -19,15 +19,23 @@ spec:
       labels:
         app: {{ include "je-deel-test-chart.fullname" . }}
     spec:
-     containers:
-      - name: {{ .Chart.Name }}
+      containers:
+      - name: je-deel-test
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-        - containerPort: 5001
+        - containerPort: {{ .Values.service.targetPort }}
+        volumeMounts:
+        - mountPath: "/data"
+          name: data
         resources:
           requests:
-            cpu: "100m"
-            memory: "100Mi"
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
           limits:
-            cpu: "500m"
-            memory: "500Mi"
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ include "je-deel-test-chart.fullname" . }}-claim

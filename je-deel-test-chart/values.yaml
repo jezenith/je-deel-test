@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 2
+replicaCount: 8
 
 image:
   repository: jezenith/je-deel-test
@@ -46,6 +46,11 @@ resources:
 
 autoscaling:
   enabled: true
-  minReplicas: 1
-  maxReplicas: 10
+  minReplicas: 4
+  maxReplicas: 15
   targetCPUUtilizationPercentage: 80
+
+storage:
+  accessModes:
+    - ReadWriteOnce
+  size: 3Gi

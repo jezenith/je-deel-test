@@ -20,7 +20,7 @@ metadata:
   labels:
     app: je-deel-test
 spec:
-  replicas: 5
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:

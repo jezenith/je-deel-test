@@ -13,7 +13,7 @@ RUN addgroup --system app && adduser --system --group app
 
 # Install system dependencies
 RUN apt-get update \
-    && apt-get install -y build-essential \
+    && apt-get install -y build-essential libpq-dev \
     && apt-get clean
 
 # Switch to app user
@@ -35,6 +35,11 @@ ENV PYTHONUNBUFFERED 1
 
 # Create and switch to a new user
 RUN addgroup --system app && adduser --system --group app
+
+# Install PostgreSQL client
+RUN apt-get update \
+    && apt-get install -y libpq5 \
+    && apt-get clean
 
 # Copy requirements from builder image
 COPY --from=build /home/app/.local /home/app/.local

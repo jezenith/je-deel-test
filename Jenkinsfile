@@ -71,7 +71,7 @@ pipeline {
             agent { label 'KOPS' }
             steps {
                 sh "kubectl create namespace prod || true"
-                sh "helm upgrade --install --force je-deel-test helm/jecharts --set appimage=${registry}:${BUILD_NUMBER} --namespace prod"
+                sh "helm upgrade --install --force je-deel-test je-deel-test-chart/ --set appimage=${registry}:${BUILD_NUMBER} --namespace prod"
             }
         }
 

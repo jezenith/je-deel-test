@@ -11,7 +11,7 @@ pipeline {
     stages {
 
         stage('Install Dependencies') {
-            when { branch 'master' }
+            when { branch 'origin/master' }
             steps {
                 sh 'pip install -r requirements.txt'
                 sh 'pip install pylint'
@@ -19,21 +19,21 @@ pipeline {
         }
 
         stage('Unit Test') {
-            when { branch 'master' }
+            when { branch 'origin/master' }
             steps {
                 sh 'python3 -m unittest'
             }
         }
 
         stage('Pylint') {
-            when { branch 'master' }
+            when { branch 'origin/master' }
             steps {
                 sh 'pylint **/*.py | tee pylint-report.txt'
             }
         }
 
         stage('Building image') {
-            when { branch 'master' }
+            when { branch 'origin/master' }
             steps {
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -42,7 +42,7 @@ pipeline {
         }
 
         stage('Deploy Docker Image') {
-            when { branch 'master' }
+            when { branch 'origin/master' }
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
@@ -54,14 +54,14 @@ pipeline {
         }
 
         stage('Remove Unused docker image') {
-            when { branch 'master' }
+            when { branch 'origin/master' }
             steps {
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
 
         stage('Deploy to Kubernetes') {
-            when { branch 'master' }
+            when { branch 'origin/master' }
             agent { label 'KOPS' }
             steps {
                 sh "kubectl create namespace prod || true"

@@ -10,7 +10,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
-      maxSurge: 1
+      maxSurge: 4
   selector:
     matchLabels:
       app: {{ include "je-deel-test-chart.fullname" . }}
@@ -21,9 +21,7 @@ spec:
     spec:
       containers:
       - name: je-deel-test
-        image: "{{ .Values.image.repository**deployment.yaml** (cont'd)
-```yaml
-        }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.targetPort }}

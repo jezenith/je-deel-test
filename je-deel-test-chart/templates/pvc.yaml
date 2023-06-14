@@ -3,8 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ include "je-deel-test-chart.fullname" . }}-claim
 spec:
-  accessModes:
-    - {{ .Values.storage.accessModes }}
+  accessModes: {{ .Values.storage.accessModes }}
   storageClassName: standard
   resources:
     requests:

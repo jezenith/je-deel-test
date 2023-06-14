@@ -1,0 +1,26 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.0.14:5001
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:36] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:36] "GET /static/css/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:38] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:42] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:42] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:44] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:56] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:56] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:58] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:59] "GET /all HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:59] "[33mGET /static/bubbles.js HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:54:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:55:00] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jun/2023 09:55:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -

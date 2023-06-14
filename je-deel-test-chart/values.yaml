@@ -1,0 +1,15 @@
+replicaCount: 3
+image:
+  repository: jezenith/je-deel-test
+  tag: latest
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 5001
+resources:
+  requests:
+    cpu: "100m"
+    memory: "100Mi"
+  limits:
+    cpu: "500m"
+    memory: "500Mi"

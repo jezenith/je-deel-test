@@ -2,6 +2,8 @@
 
 This is a simple Flask application that captures and stores reversed IP addresses. The application has two main routes: the root (`/`) that displays the client's IP address and the reversed IP, and `/all` that shows all reversed IPs stored so far.
 
+currently live on: http://ac38de43890fe4864b6c0affade96595-5c685da0e71fc0f4.elb.us-east-2.amazonaws.com/
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -103,6 +105,7 @@ The CI/CD pipeline is configured using Jenkins. The pipeline runs on every push 
 
 All these steps are defined in the `Jenkinsfile` in the root directory of this repository.
 
+## Helm Chart
 
 The Helm chart, located in the je-deel-test-chart directory, is structured as follows:
 

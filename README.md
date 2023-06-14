@@ -18,7 +18,7 @@ These instructions will get you a copy of the project up and running on your loc
 - Jenkins CI/CD tool
 
 <img src="./images/k8s-je.svg" width="50%" height="50%">
-### Running Locally
+## Running Locally
 
 1. Clone the repository:
 
@@ -109,13 +109,13 @@ All these steps are defined in the `Jenkinsfile` in the root directory of this r
 
 The Helm chart, located in the je-deel-test-chart directory, is structured as follows:
 
-Chart.yaml: This is the main file that includes the description of your Helm chart. It includes the version of the chart and the app version.
+Chart.yaml: This is the main file that includes the description of the Helm chart. It includes the version of the chart and the app version.
 
 values.yaml: This file defines the default configuration values for this chart. It includes the replica count, image details, service details, resource requests and limits, and the details for the readiness and liveness probes.
 
-templates/deployment.yaml: This file defines the Kubernetes Deployment for your application. It uses the values from values.yaml to set the number of replicas, the Docker image to use, the container port, and the readiness and liveness probes.
+templates/deployment.yaml: This file defines the Kubernetes Deployment for the application. It uses the values from values.yaml to set the number of replicas, the Docker image to use, the container port, and the readiness and liveness probes.
 
-templates/service.yaml: This file defines the Kubernetes Service for your application. It uses the values from values.yaml to set the service type, port, and target port.
+templates/service.yaml: This file defines the Kubernetes Service for the application. It uses the values from values.yaml to set the service type, port, and target port.
 
 templates/hpa.yaml: This file defines the Horizontal Pod Autoscaler (HPA) for your application. It uses the values from values.yaml to set the minimum and maximum number of replicas and the CPU utilization threshold for scaling.
 

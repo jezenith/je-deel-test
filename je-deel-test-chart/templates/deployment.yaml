@@ -31,3 +31,10 @@ spec:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
               memory: {{ .Values.resources.limits.memory }}
+          volumeMounts:
+            - name: sqlite-db
+              mountPath: /app/instance
+      volumes:
+        - name: sqlite-db
+          persistentVolumeClaim:
+            claimName: {{ include "je-deel-test.fullname" . }}-pvc

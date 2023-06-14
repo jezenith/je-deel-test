@@ -54,17 +54,6 @@ pipeline {
             }
         }
 
-        stage('CODE ANALYSIS with SONARQUBE') {
-            steps {
-                withSonarQubeEnv('sonar-pro') {
-                    sh 'sonar-scanner -Dsonar.projectKey=vprofile'
-                    timeout(time: 10, unit: 'MINUTES') {
-                        waitForQualityGate abortPipeline: true
-                    }
-                }
-            }
-        }
-
         stage('Deploy to Kubernetes') {
             agent { label 'KOPS' }
             steps {

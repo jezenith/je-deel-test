@@ -1,4 +1,4 @@
-replicaCount: 10
+replicaCount: 4
 image:
   repository: jezenith/je-deel-test
   tag: latest

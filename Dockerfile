@@ -53,6 +53,10 @@ COPY --from=build --chown=app:app /app /app
 RUN mkdir -p /var/log/app && chown app:app /var/log/app
 VOLUME /var/log/app
 
+# Create a directory for the SQLite database
+RUN mkdir -p /app/instance && chown app:app /app/instance
+VOLUME /app/instance
+
 # Make port 5001 available to the world outside this container
 EXPOSE 5001
 

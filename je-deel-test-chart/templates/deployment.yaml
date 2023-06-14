@@ -10,7 +10,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 2
-      maxSurge: 5
+      maxSurge: 1
   selector:
     matchLabels:
       app: {{ include "je-deel-test.fullname" . }}

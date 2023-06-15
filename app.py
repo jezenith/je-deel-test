@@ -8,7 +8,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 logging.basicConfig(filename='app.log', level=logging.ERROR)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
+db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'instance', 'test.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  
 app.wsgi_app = ProxyFix(app.wsgi_app)  # To get the correct IP behind a proxy (like Nginx)
 

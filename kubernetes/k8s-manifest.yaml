@@ -1,30 +1,13 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: je-deel-pv
-  labels:
-    type: amazonEBS
-spec:
-  capacity:
-    storage: 3Gi
-  accessModes:
-    - ReadWriteOnce
-  awsElasticBlockStore:
-    volumeID: "vol-06cd734de21b7ec50"
-    fsType: ext4
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: je-deel-pvc
+  name: sqlite-db
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: ""
-  volumeName: je-deel-pv
   resources:
     requests:
-      storage: 3Gi
+      storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
@@ -48,7 +31,7 @@ metadata:
   labels:
     app: je-deel-test
 spec:
-  replicas: 2
+  replicas: 5
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -67,9 +50,6 @@ spec:
         image: jezenith/je-deel-test:test-6.2
         ports:
         - containerPort: 5001
-        volumeMounts:
-        - mountPath: "/app/instance"
-          name: data
         resources:
           requests:
             cpu: "100m"
@@ -77,7 +57,10 @@ spec:
           limits:
             cpu: "500m"
             memory: "500Mi"
+        volumeMounts:
+        - name: sqlite-db
+          mountPath: /app/instance
       volumes:
-      - name: data
+      - name: sqlite-db
         persistentVolumeClaim:
-          claimName: je-deel-pvc
+          claimName: sqlite-db

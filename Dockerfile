@@ -1,67 +1,42 @@
-# Use an official Python runtime as a parent image
-FROM python:3.8-slim-buster as build
+# First stage: Python build stage
+FROM python:3.9-slim as builder
 
-# Set environment varibles
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Set working directory in the container
 WORKDIR /app
 
-# Add user that will run the app
-RUN addgroup --system app && adduser --system --group app
+# Install build dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends build-essential gcc
 
-# Install system dependencies
-RUN apt-get update \
-    && apt-get install -y build-essential libpq-dev \
-    && apt-get clean
-
-# Switch to app user
-USER app
-
-# Install application dependencies
-COPY --chown=app:app requirements.txt ./
+# Copy requirements and install Python dependencies
+COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
 
-# Copy local code to the container image
-COPY --chown=app:app . .
+# Second stage: Application run stage
+FROM python:3.9-slim as app
 
-# Use multi-stage build to create a lean production image
-FROM python:3.8-slim-buster as final
-
-# Set environment varibles
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Create and switch to a new user
-RUN addgroup --system app && adduser --system --group app
-
-# Install PostgreSQL client
-RUN apt-get update \
-    && apt-get install -y libpq5 \
-    && apt-get clean
-
-# Copy requirements from builder image
-COPY --from=build /home/app/.local /home/app/.local
-ENV PATH=/home/app/.local/bin:$PATH
-
-# Copy application from builder image
 WORKDIR /app
-COPY --from=build --chown=app:app /app /app
 
-# Create a directory for the application logs
-RUN mkdir -p /var/log/app && chown app:app /var/log/app
-VOLUME /var/log/app
+# Create a group and user
+RUN groupadd -r appuser && useradd -r -g appuser appuser
 
-# Create a directory for the SQLite database
-RUN mkdir -p /app/instance && chown app:app /app/instance
-VOLUME /app/instance
+# Copy from builder stage
+COPY --from=builder /root/.local /root/.local
+COPY . .
 
-# Make port 5001 available to the world outside this container
-EXPOSE 5001
+# Change ownership of app directory to appuser
+RUN chown -R appuser:appuser /app
 
-# Switch to app user
-USER app
+# Make sure scripts in .local are usable:
+ENV PATH=/root/.local/bin:$PATH
 
-# Run the application
-CMD ["gunicorn", "app:app", "-b", "0.0.0.0:5001"]
+# Apply database migrations
+RUN python -c "from app import create_db; create_db()"
+
+# Switch to non-root user
+USER appuser
+
+# Healthcheck
+HEALTHCHECK CMD curl --fail http://localhost:5001/health || exit 1
+
+# Start the application
+CMD ["gunicorn", "-b", "0.0.0.0:5001", "app:app"]

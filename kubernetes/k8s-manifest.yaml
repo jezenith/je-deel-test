@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: je-deel-test
-        image: jezenith/je-deel-test:latest
+        image: jezenith/je-deel-test:test-2
         ports:
         - containerPort: 5001
         volumeMounts:

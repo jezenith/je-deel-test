@@ -60,18 +60,6 @@ spec:
           mountPath: /var/log/app
         - name: sqlite-volume
           mountPath: /app/instance
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 5001
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 5001
-          initialDelaySeconds: 15
-          periodSeconds: 15
       volumes:
       - name: log-volume
         persistentVolumeClaim:

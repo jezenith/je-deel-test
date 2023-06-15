@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: je-deel-test
-        image: jezenith/je-deel-test:test-6.2
+        image: jezenith/je-deel-test:test-6.6
         ports:
         - containerPort: 5001
         resources:

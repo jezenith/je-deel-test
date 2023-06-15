@@ -59,7 +59,7 @@ spec:
             memory: "500Mi"
         volumeMounts:
         - name: sqlite-db
-          mountPath: /app/instance
+          mountPath: /app/instance/test.db
       volumes:
       - name: sqlite-db
         persistentVolumeClaim:

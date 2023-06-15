@@ -1,4 +1,32 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: je-deel-pv
+  labels:
+    type: amazonEBS
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  awsElasticBlockStore:
+    volumeID: "vol-06cd734de21b7ec50"
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: je-deel-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  volumeName: je-deel-pv
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: je-deel-test-service
@@ -39,6 +67,9 @@ spec:
         image: jezenith/je-deel-test:test-6.2
         ports:
         - containerPort: 5001
+        volumeMounts:
+        - mountPath: "/app/instance"
+          name: data
         resources:
           requests:
             cpu: "100m"
@@ -46,3 +77,7 @@ spec:
           limits:
             cpu: "500m"
             memory: "500Mi"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: je-deel-pvc

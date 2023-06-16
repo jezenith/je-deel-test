@@ -49,4 +49,18 @@ autoscaling:
   minReplicas: 4
   maxReplicas: 15
   targetCPUUtilizationPercentage: 80
-  
+
+strategy:
+  type: RollingUpdate
+  maxUnavailable: 1
+  maxSurge: 4
+
+container:
+  name: je-deel-test
+  port: 5001
+
+volumes:
+  name: data
+  mountPath: /data
+  persistentVolumeClaim:
+    claimName: je-deel-pvc

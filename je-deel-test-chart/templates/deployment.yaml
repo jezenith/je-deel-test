@@ -7,10 +7,10 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
-    type: RollingUpdate
+    type: {{ .Values.strategy.type }}
     rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 4
+      maxUnavailable: {{ .Values.strategy.maxUnavailable }}
+      maxSurge: {{ .Values.strategy.maxSurge }}
   selector:
     matchLabels:
       app: {{ include "je-deel-test-chart.fullname" . }}
@@ -20,14 +20,14 @@ spec:
         app: {{ include "je-deel-test-chart.fullname" . }}
     spec:
       containers:
-      - name: je-deel-test
+      - name: {{ .Values.container.name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-        - containerPort: {{ .Values.service.targetPort }}
+        - containerPort: {{ .Values.container.port }}
         volumeMounts:
-        - mountPath: "/data"
-          name: data
+        - mountPath: {{ .Values.volumes.mountPath }}
+          name: {{ .Values.volumes.name }}
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
@@ -36,6 +36,6 @@ spec:
             cpu: {{ .Values.resources.limits.cpu }}
             memory: {{ .Values.resources.limits.memory }}
       volumes:
-      - name: data
+      - name: {{ .Values.volumes.name }}
         persistentVolumeClaim:
-          claimName: je-deel-pvc
+          claimName: {{ .Values.volumes.persistentVolumeClaim.claimName }}

@@ -38,4 +38,4 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: {{ include "je-deel-test-chart.fullname" . }}-claim
+          claimName: je-deel-test-je-deel-test-chart-claim

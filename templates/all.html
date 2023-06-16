@@ -3,6 +3,28 @@
 <head>
     <title>All Reversed IPs</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            background: linear-gradient(to right, blue, purple);
+        }
+        .button {
+            background-color: #008CBA; /* Blue */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        /* Added table styles */
+        table {
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="center">
@@ -14,7 +36,8 @@
                 </tr>
             {% endfor %}
         </table>
-        <a href="/" class="button">Go Back</a>
+        <a href="/" class="button">Homepage</a>
+        <a href="/health" class="button">Database Check</a>
     </div>
     <canvas id="bubbles"></canvas>
     <script src="/static/bubbles.js"></script>

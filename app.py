@@ -44,18 +44,19 @@ def display_all():
         app.logger.error(f"Error occurred: {e}")
         return render_template('error.html'), 500
 
+
 @app.route('/health')
 def health_check():
     try:
         # Run a simple SELECT query
-        result = db.engine.execute('SELECT 1')
+        result = db.session.query(IP).first()
         # If the query was successful, return a positive response
-        if result.fetchone()[0] == 1:
-            return 'Database connection successful', 200
+        return render_template('health.html', message='Database connection successful', css_class='success'), 200
     except Exception as e:
         # If there was an error, log it and return a negative response
         app.logger.error(f"Database connection failed: {e}")
-        return 'Database connection failed', 500
+        return render_template('health.html', message='Database connection failed', css_class='failure'), 500
+
 
 def create_db():
     with app.app_context():

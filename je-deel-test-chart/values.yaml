@@ -7,7 +7,7 @@ replicaCount: 2
 image:
   repository: jezenith/je-deel-test
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 nameOverride: ""
 fullnameOverride: ""

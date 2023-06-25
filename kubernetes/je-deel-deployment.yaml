@@ -37,4 +37,4 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: data-claim
+          claimName: je-deel-pvc
